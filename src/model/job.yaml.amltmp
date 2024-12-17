@@ -1,0 +1,17 @@
+$schema: https://azuremlschemas.azureedge.net/latest/commandJob.schema.json
+
+code: .  # Path to the folder containing the script
+command: >
+  python3 train.py
+  --training_data ${{inputs.training_data}}
+  --reg_rate 0.01  # Directly specify reg_rate as a command argument
+
+inputs:
+  training_data:
+    type: uri_file  # Reference to the dataset (file URI)
+    path: azureml:diabetesdevsasset:1  # Reference to your Azure ML dataset
+
+environment: azureml:AzureML-sklearn-0.24-ubuntu18.04-py37-cpu@latest  # Use scikit-learn environment
+compute: diabetescompute  # Your compute target
+experiment_name: diabetes-experiment  # Name of the experiment
+description: "Train a logistic regression model on the diabetes dataset"  # A short description of the job
