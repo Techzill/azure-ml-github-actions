@@ -12,10 +12,10 @@
         "from azure.ai.ml.entities import Data"
       ],
       "outputs": [],
-      "execution_count": 3,
+      "execution_count": 1,
       "metadata": {
         "gather": {
-          "logged": 1734086907641
+          "logged": 1734518458931
         }
       }
     },
@@ -44,7 +44,7 @@
         "    print(ex)"
       ],
       "outputs": [],
-      "execution_count": 4,
+      "execution_count": 3,
       "metadata": {
         "jupyter": {
           "source_hidden": false,
@@ -56,7 +56,7 @@
           }
         },
         "gather": {
-          "logged": 1734086926232
+          "logged": 1734518465227
         }
       }
     },
@@ -85,6 +85,28 @@
           "text": "Found the config file in: /config.json\n"
         }
       ],
+      "execution_count": 4,
+      "metadata": {
+        "jupyter": {
+          "source_hidden": false,
+          "outputs_hidden": false
+        },
+        "nteract": {
+          "transient": {
+            "deleting": false
+          }
+        },
+        "gather": {
+          "logged": 1734518479897
+        }
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "import pandas as pd"
+      ],
+      "outputs": [],
       "execution_count": 5,
       "metadata": {
         "jupyter": {
@@ -97,17 +119,17 @@
           }
         },
         "gather": {
-          "logged": 1734086929354
+          "logged": 1734518498339
         }
       }
     },
     {
       "cell_type": "code",
       "source": [
-        "import pandas as pd"
+        "df = pd.read_csv(\"./diabetes-dev.csv\")"
       ],
       "outputs": [],
-      "execution_count": 6,
+      "execution_count": 7,
       "metadata": {
         "jupyter": {
           "source_hidden": false,
@@ -119,16 +141,48 @@
           }
         },
         "gather": {
-          "logged": 1734084003596
+          "logged": 1734518753416
         }
       }
     },
     {
       "cell_type": "code",
       "source": [
-        "import pandas as pd\n",
+        "df"
+      ],
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "execution_count": 8,
+          "data": {
+            "text/plain": "      PatientID  Pregnancies  PlasmaGlucose  DiastolicBloodPressure  \\\n0       1142956            1             78                      41   \n1       1823377            0            116                      92   \n2       1916381            8            171                      42   \n3       1247480            3            108                      63   \n4       1516947            8            153                      99   \n...         ...          ...            ...                     ...   \n4995    1490300           10             65                      60   \n4996    1744410            2             73                      66   \n4997    1742742            0             93                      89   \n4998    1099353            0            132                      98   \n4999    1386396            3            114                      65   \n\n      TricepsThickness  SerumInsulin        BMI  DiabetesPedigree  Age  \\\n0                   33           311  50.796392          0.420804   24   \n1                   16           184  18.603630          0.131156   22   \n2                   29           160  35.482247          0.082671   22   \n3                   45           297  49.375169          0.100979   46   \n4                   15            41  35.062139          0.116191   22   \n...                ...           ...        ...               ...  ...   \n4995                46           177  33.512468          0.148327   41   \n4996                27           168  30.132636          0.862252   38   \n4997                43            57  18.690683          0.427049   24   \n4998                18           161  19.791645          0.302257   23   \n4999                47           512  36.215437          0.147363   34   \n\n      Diabetic  \n0            0  \n1            0  \n2            1  \n3            1  \n4            1  \n...        ...  \n4995         1  \n4996         1  \n4997         0  \n4998         0  \n4999         1  \n\n[5000 rows x 10 columns]",
+            "text/html": "<div>\n<style scoped>\n    .dataframe tbody tr th:only-of-type {\n        vertical-align: middle;\n    }\n\n    .dataframe tbody tr th {\n        vertical-align: top;\n    }\n\n    .dataframe thead th {\n        text-align: right;\n    }\n</style>\n<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th></th>\n      <th>PatientID</th>\n      <th>Pregnancies</th>\n      <th>PlasmaGlucose</th>\n      <th>DiastolicBloodPressure</th>\n      <th>TricepsThickness</th>\n      <th>SerumInsulin</th>\n      <th>BMI</th>\n      <th>DiabetesPedigree</th>\n      <th>Age</th>\n      <th>Diabetic</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <th>0</th>\n      <td>1142956</td>\n      <td>1</td>\n      <td>78</td>\n      <td>41</td>\n      <td>33</td>\n      <td>311</td>\n      <td>50.796392</td>\n      <td>0.420804</td>\n      <td>24</td>\n      <td>0</td>\n    </tr>\n    <tr>\n      <th>1</th>\n      <td>1823377</td>\n      <td>0</td>\n      <td>116</td>\n      <td>92</td>\n      <td>16</td>\n      <td>184</td>\n      <td>18.603630</td>\n      <td>0.131156</td>\n      <td>22</td>\n      <td>0</td>\n    </tr>\n    <tr>\n      <th>2</th>\n      <td>1916381</td>\n      <td>8</td>\n      <td>171</td>\n      <td>42</td>\n      <td>29</td>\n      <td>160</td>\n      <td>35.482247</td>\n      <td>0.082671</td>\n      <td>22</td>\n      <td>1</td>\n    </tr>\n    <tr>\n      <th>3</th>\n      <td>1247480</td>\n      <td>3</td>\n      <td>108</td>\n      <td>63</td>\n      <td>45</td>\n      <td>297</td>\n      <td>49.375169</td>\n      <td>0.100979</td>\n      <td>46</td>\n      <td>1</td>\n    </tr>\n    <tr>\n      <th>4</th>\n      <td>1516947</td>\n      <td>8</td>\n      <td>153</td>\n      <td>99</td>\n      <td>15</td>\n      <td>41</td>\n      <td>35.062139</td>\n      <td>0.116191</td>\n      <td>22</td>\n      <td>1</td>\n    </tr>\n    <tr>\n      <th>...</th>\n      <td>...</td>\n      <td>...</td>\n      <td>...</td>\n      <td>...</td>\n      <td>...</td>\n      <td>...</td>\n      <td>...</td>\n      <td>...</td>\n      <td>...</td>\n      <td>...</td>\n    </tr>\n    <tr>\n      <th>4995</th>\n      <td>1490300</td>\n      <td>10</td>\n      <td>65</td>\n      <td>60</td>\n      <td>46</td>\n      <td>177</td>\n      <td>33.512468</td>\n      <td>0.148327</td>\n      <td>41</td>\n      <td>1</td>\n    </tr>\n    <tr>\n      <th>4996</th>\n      <td>1744410</td>\n      <td>2</td>\n      <td>73</td>\n      <td>66</td>\n      <td>27</td>\n      <td>168</td>\n      <td>30.132636</td>\n      <td>0.862252</td>\n      <td>38</td>\n      <td>1</td>\n    </tr>\n    <tr>\n      <th>4997</th>\n      <td>1742742</td>\n      <td>0</td>\n      <td>93</td>\n      <td>89</td>\n      <td>43</td>\n      <td>57</td>\n      <td>18.690683</td>\n      <td>0.427049</td>\n      <td>24</td>\n      <td>0</td>\n    </tr>\n    <tr>\n      <th>4998</th>\n      <td>1099353</td>\n      <td>0</td>\n      <td>132</td>\n      <td>98</td>\n      <td>18</td>\n      <td>161</td>\n      <td>19.791645</td>\n      <td>0.302257</td>\n      <td>23</td>\n      <td>0</td>\n    </tr>\n    <tr>\n      <th>4999</th>\n      <td>1386396</td>\n      <td>3</td>\n      <td>114</td>\n      <td>65</td>\n      <td>47</td>\n      <td>512</td>\n      <td>36.215437</td>\n      <td>0.147363</td>\n      <td>34</td>\n      <td>1</td>\n    </tr>\n  </tbody>\n</table>\n<p>5000 rows × 10 columns</p>\n</div>"
+          },
+          "metadata": {}
+        }
+      ],
+      "execution_count": 8,
+      "metadata": {
+        "jupyter": {
+          "source_hidden": false,
+          "outputs_hidden": false
+        },
+        "nteract": {
+          "transient": {
+            "deleting": false
+          }
+        },
+        "gather": {
+          "logged": 1734518930289
+        }
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# import pandas as pd\n",
         "\n",
-        "df = pd.read_csv(\"azureml://subscriptions/952fe447-cc92-4a68-a6bd-52160cc69c10/resourcegroups/latemlopRG/workspaces/mlopworkspace/datastores/workspaceblobstore/paths/diabetes-dev.csv\")"
+        "# df = pd.read_csv(\"azureml://subscriptions/952fe447-cc92-4a68-a6bd-52160cc69c10/resourcegroups/latemlopRG/workspaces/mlopworkspace/datastores/workspaceblobstore/paths/diabetes-dev.csv\")"
       ],
       "outputs": [],
       "execution_count": 13,
@@ -155,7 +209,7 @@
       "outputs": [
         {
           "output_type": "execute_result",
-          "execution_count": 14,
+          "execution_count": 10,
           "data": {
             "text/plain": "   PatientID  Pregnancies  PlasmaGlucose  DiastolicBloodPressure  \\\n0    1142956            1             78                      41   \n1    1823377            0            116                      92   \n2    1916381            8            171                      42   \n3    1247480            3            108                      63   \n4    1516947            8            153                      99   \n\n   TricepsThickness  SerumInsulin        BMI  DiabetesPedigree  Age  Diabetic  \n0                33           311  50.796392          0.420804   24         0  \n1                16           184  18.603630          0.131156   22         0  \n2                29           160  35.482247          0.082671   22         1  \n3                45           297  49.375169          0.100979   46         1  \n4                15            41  35.062139          0.116191   22         1  ",
             "text/html": "<div>\n<style scoped>\n    .dataframe tbody tr th:only-of-type {\n        vertical-align: middle;\n    }\n\n    .dataframe tbody tr th {\n        vertical-align: top;\n    }\n\n    .dataframe thead th {\n        text-align: right;\n    }\n</style>\n<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th></th>\n      <th>PatientID</th>\n      <th>Pregnancies</th>\n      <th>PlasmaGlucose</th>\n      <th>DiastolicBloodPressure</th>\n      <th>TricepsThickness</th>\n      <th>SerumInsulin</th>\n      <th>BMI</th>\n      <th>DiabetesPedigree</th>\n      <th>Age</th>\n      <th>Diabetic</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <th>0</th>\n      <td>1142956</td>\n      <td>1</td>\n      <td>78</td>\n      <td>41</td>\n      <td>33</td>\n      <td>311</td>\n      <td>50.796392</td>\n      <td>0.420804</td>\n      <td>24</td>\n      <td>0</td>\n    </tr>\n    <tr>\n      <th>1</th>\n      <td>1823377</td>\n      <td>0</td>\n      <td>116</td>\n      <td>92</td>\n      <td>16</td>\n      <td>184</td>\n      <td>18.603630</td>\n      <td>0.131156</td>\n      <td>22</td>\n      <td>0</td>\n    </tr>\n    <tr>\n      <th>2</th>\n      <td>1916381</td>\n      <td>8</td>\n      <td>171</td>\n      <td>42</td>\n      <td>29</td>\n      <td>160</td>\n      <td>35.482247</td>\n      <td>0.082671</td>\n      <td>22</td>\n      <td>1</td>\n    </tr>\n    <tr>\n      <th>3</th>\n      <td>1247480</td>\n      <td>3</td>\n      <td>108</td>\n      <td>63</td>\n      <td>45</td>\n      <td>297</td>\n      <td>49.375169</td>\n      <td>0.100979</td>\n      <td>46</td>\n      <td>1</td>\n    </tr>\n    <tr>\n      <th>4</th>\n      <td>1516947</td>\n      <td>8</td>\n      <td>153</td>\n      <td>99</td>\n      <td>15</td>\n      <td>41</td>\n      <td>35.062139</td>\n      <td>0.116191</td>\n      <td>22</td>\n      <td>1</td>\n    </tr>\n  </tbody>\n</table>\n</div>"
@@ -163,7 +217,7 @@
           "metadata": {}
         }
       ],
-      "execution_count": 14,
+      "execution_count": 10,
       "metadata": {
         "jupyter": {
           "source_hidden": false,
@@ -175,7 +229,7 @@
           }
         },
         "gather": {
-          "logged": 1734089011834
+          "logged": 1734519025545
         }
       }
     },

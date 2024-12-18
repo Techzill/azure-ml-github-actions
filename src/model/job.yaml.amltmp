@@ -1,17 +1,36 @@
+# $schema: https://azuremlschemas.azureedge.net/latest/commandJob.schema.json
+
+# code: .  # Path to the folder containing the script
+# command: >
+#   python3 train.py
+#   --training_data ${{inputs.training_data}}
+#   --reg_rate 0.01
+
+# inputs:
+#   training_data:
+#     type: uri_file  # Pass the dataset name directly
+#     default: diabetesdevsasset  # Dataset name in Azure ML
+
+# environment: azureml:AzureML-sklearn-0.24-ubuntu18.04-py37-cpu@latest  # Use scikit-learn environment
+# compute: diabetescompute  # Your compute target
+# experiment_name: diabetes-experiment
+# description: "Train a logistic regression model on the diabetes dataset"
+
+
 $schema: https://azuremlschemas.azureedge.net/latest/commandJob.schema.json
 
 code: .  # Path to the folder containing the script
 command: >
   python3 train.py
   --training_data ${{inputs.training_data}}
-  --reg_rate 0.01  # Directly specify reg_rate as a command argument
+  --reg_rate 0.01  # Regularization rate for logistic regression model
 
 inputs:
   training_data:
-    type: uri_file  # Reference to the dataset (file URI)
-    path: azureml:diabetesdevsasset:1  # Reference to your Azure ML dataset
+    type: uri_file  # Use uri_file for a single file input
+    path: "azureml://subscriptions/952fe447-cc92-4a68-a6bd-52160cc69c10/resourcegroups/latemlopRG/workspaces/mlopworkspace/datastores/workspaceblobstore/paths/diabetes-dev.csv"  # Reference a registered dataset by name and version (or use a direct URI)
 
 environment: azureml:AzureML-sklearn-0.24-ubuntu18.04-py37-cpu@latest  # Use scikit-learn environment
 compute: diabetescompute  # Your compute target
-experiment_name: diabetes-experiment  # Name of the experiment
-description: "Train a logistic regression model on the diabetes dataset"  # A short description of the job
+experiment_name: diabetes-experiment
+description: "Train a logistic regression model on the diabetes dataset"
